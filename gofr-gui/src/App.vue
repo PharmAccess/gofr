@@ -120,7 +120,7 @@
     </v-main>
     <v-footer
       dark
-      color="primary"
+      color="#00558f"
       :fixed="fixed"
       app
       height="20"

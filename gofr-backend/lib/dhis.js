@@ -192,7 +192,7 @@ const dhis = {
     }
   },
   getLastUpdate: (name, dhis2URL, auth, callback) => {
-    logger.info('getting lastupdated time');
+    logger.info('getting last updated time');
     if (dhis2URL.port() < 0 || dhis2URL.port() >= 65536) {
       logger.error('port number is out of range');
       return callback(false);
@@ -211,7 +211,7 @@ const dhis = {
       method: 'GET',
     });
     req.on('response', (res) => {
-      logger.info(`Request to get lastupdated time has responded with code ${res.statusCode}`);
+      logger.info(`Request to get last updated time has responded with code ${res.statusCode}`);
       let body = '';
       res.on('data', (chunk) => {
         body += chunk;
@@ -242,7 +242,8 @@ const dhis = {
 };
 
 async function processOrgUnit(metadata, hasKey) {
-  logger.info('Now writting org units into the database');
+  logger.info('Now writing org units into the database');
+  // logger.info(credentials)
   const {
     name,
     clientId,
@@ -294,10 +295,11 @@ async function processOrgUnit(metadata, hasKey) {
     uuid: credentials.topOrgId,
     parentUUID: null,
   };
-  await uploadToSql.createTable(database).catch((err) => {
-    console.log(err);
-  })
-  uploadToSql.buildSQL(fakeOrgId, queries, database)
+  // TODO: check why table is being created in pg directly also why pg use is assumed
+  // await uploadToSql.createTable(database).catch((err) => {
+  //   console.log(err);
+  // })
+  // uploadToSql.buildSQL(fakeOrgId, queries, database)
   let bundle = {
     id: uuid4(),
     resourceType: 'Bundle',
@@ -331,7 +333,7 @@ async function processOrgUnit(metadata, hasKey) {
       mode: 'instance',
     };
     fhir.identifier = [{
-      system: 'http://dhis2.org/code',
+      system: 'https://kmhfl.health.go.ke/',
       value: org.code,
     },
     {
@@ -462,12 +464,12 @@ async function processOrgUnit(metadata, hasKey) {
       }).catch((err) => {
         logger.error(err);
       })
-      await uploadToSql.saveSQL(queries)
+      // await uploadToSql.saveSQL(queries)
       queries = []
     }
   }
   if(queries.length > 0) {
-    uploadToSql.saveSQL(queries)
+    // uploadToSql.saveSQL(queries)
   }
   if(bundle.entry.length > 0) {
     await fhirAxios.create(bundle, database).then(() => {

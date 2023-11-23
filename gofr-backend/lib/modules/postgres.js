@@ -1,5 +1,6 @@
 const { Pool, escapeLiteral } = require("pg");
 
+// TODO: this should be in a config file
 const pool = new Pool({
   database: "gofr",
   user: "hapi",

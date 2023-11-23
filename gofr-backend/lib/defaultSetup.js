@@ -9,6 +9,7 @@ const config = require('./config');
 const logger = require('./winston');
 const mixin = require('./mixin');
 const fhirAxios = require('./modules/fhirAxios');
+const kcadmin = require("./modules/keycloakAdminClient");
 
 const loadKeycloakData = () => new Promise((resolve, reject) => {
   const installed = config.get('app:installed');
@@ -270,18 +271,18 @@ module.exports = {
   initialize: () => new Promise((resolve, reject) => {
     let errorOccured = false;
     async.series([
-      (callback) => {
-        loadKeycloakData().then(() => callback(null)).catch((err) => {
-          errorOccured = true;
-          logger.error(err);
-          return callback(null);
-        });
-      },
+      // (callback) => {
+      //   loadKeycloakData().then(() => callback(null)).catch((err) => {
+      //     errorOccured = true;
+      //     logger.error(err);
+      //     return callback(null);
+      //   });
+      // },
       (callback) => {
         Promise.all([loadDefaultConfig(), loadFSHFiles()]).then(() => {
           const idp = config.get('app:idp');
           if (idp === 'keycloak') {
-            const kcadmin = require('./modules/keycloakAdminClient');
+            // const kcadmin = require('./modules/keycloakAdminClient');
             setTimeout(() => {
               kcadmin.loadTasksToKeycloak().then(() => callback(null)).catch((err) => {
                 errorOccured = true;

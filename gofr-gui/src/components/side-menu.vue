@@ -5,7 +5,8 @@
     app
     clipped
     permanent
-    class="primary darken-1 white--text font-weight-bold"
+    color="#00558f"
+    class="darken-1 white--text font-weight-bold"
     style="z-index: 3;"
     width="358"
   >
@@ -41,10 +42,10 @@
           <v-list-group
             :key="item.id"
             :prepend-icon="item.icon"
-            color="white--text"
+            color="#00558f white--text"
             :value="item.active"
             v-model="item.active"
-            :class="(item.active ? 'primary darken-2' : '')"
+            :class="(item.active ? 'darken-2' : '')"
             no-action
           >
             <template v-slot:activator>
@@ -57,10 +58,10 @@
                 <v-list-group
                   :key="sub.id"
                   :append-icon="sub.icon"
-                  color="white--text"
+                  color="#00558f white--text"
                   :value="sub.active"
                   v-model="sub.active"
-                  :class="(sub.active ? 'primary darken-2' : '')"
+                  :class="(sub.active ? 'darken-2' : '')"
                   sub-group
                   no-action
                 >

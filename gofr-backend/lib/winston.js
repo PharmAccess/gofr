@@ -2,7 +2,7 @@ const winston = require('winston');
 const moment = require('moment');
 require('winston-daily-rotate-file');
 const fs = require('fs');
-const logDir = '/var/log';
+const logDir = '/home/chris/projects/pharmaccess/hdc/logs';
 const logPrefix = 'gofr-';
 const maxLogFiles = 10;
 const logDatePattern = 'YYYY-MM-DD-HH';
