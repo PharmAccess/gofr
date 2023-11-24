@@ -1,7 +1,7 @@
 <template>
-  <v-menu class="ma-8" v-model="languageMenu" offset-y>
+  <v-menu class="ma-8" v-model="languageMenu" offset-y open-on-hover>
     <template v-slot:activator="{ on, attrs }">
-      <v-btn class="text-capitalize" v-bind="attrs" v-on="on" text>
+      <v-btn class="text-capitalize" color="white" v-bind="attrs" v-on="on" text height="100%">
         <v-list-item-avatar size="24">
           <v-img :src="`/flag_${activeFlag}.svg`"></v-img>
         </v-list-item-avatar>

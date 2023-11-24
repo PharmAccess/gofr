@@ -24,9 +24,9 @@
           <img src="../assets/dhis2.png" />
         </v-btn>
       </template>
-      <!--<div>
+      <div>
         <language-switcher />
-      </div> -->
+      </div>
       <template v-if="$store.state.auth.userID">
         <v-menu offset-y open-on-hover>
           <template v-slot:activator="{ on }">
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-// import LanguageSwitcher from "@/components/language-switcher";
+import LanguageSwitcher from "@/components/language-switcher";
 export default {
   computed: {
     dhisLink () {
@@ -68,7 +68,7 @@ export default {
     }
   },
   components: {
-    // LanguageSwitcher,
+    LanguageSwitcher,
   }
 }
 </script>
