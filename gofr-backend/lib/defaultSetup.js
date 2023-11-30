@@ -312,6 +312,7 @@ module.exports = {
       }
       mixin.updateConfigFile(['app', 'installed'], true, () => {
         logger.info('Done loading Default data');
+        logger.info('Test....');
         return resolve();
       });
     });
